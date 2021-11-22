@@ -13,9 +13,11 @@
         <h1> Inmobiliaria NOVENDONUNCANA S.A. </h1>
     </header>
 
-    <nav> <ul>
-        <li><a href="introduceCasa.php">Introducir vivienda</a></li>
-        <li><a href="consultaCasa.php">Consultar viviendas</a></li>
-    </ul></nav>
+    <nav class="navegador"> 
+        <ul>
+            <li><a href="introduceCasa.php">Introducir vivienda</a></li>
+            <li><a href="consultaCasa.php">Consultar viviendas</a></li>
+        </ul>
+    </nav>
 </body>
 </html>
