@@ -19,5 +19,74 @@
             <li><a href="consultaCasa.php">Consultar viviendas</a></li>
         </ul>
     </nav>
+    
+    <h3>Introducir una nueva vivienda</h3>
+
+    <p>Introduzca los datos de la vivienda</p>
+
+    <table>
+    <form action="self" method="post">
+        <tr>
+            <td>
+                <label for="tipo">Tipo de vivienda: </label>
+            </td>
+            <td>
+                <select id="tipo" required>
+                    <option value="piso"> Piso </option>
+                    <option value="adosado"> Adosado </option>
+                    <option value="chalet"> Chalet </option>
+                    <option value="casa"> Casa </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="zona">Zona: </label>
+            </td>
+            <td>
+                <select id="zona" required>
+                    <option value="centro"> Centro </option>
+                    <option value="nervion"> Nervion </option>
+                    <option value="triana"> Triana </option>
+                    <option value="aljarafe"> Aljarafe </option>
+                    <option value="aljarafe"> Macarena </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="direccion">Direcion: </label>
+            </td>
+            <td>
+                <input type="text" required>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="dormitorios">Numero de dormitorios: </label>
+            </td>
+            <td>
+                <input type="radio" name="dormitorios">1</input>
+                <input type="radio" name="dormitorios">2</input>
+                <input type="radio" name="dormitorios" checked>3</input>
+                <input type="radio" name="dormitorios">4</input>
+                <input type="radio" name="dormitorios">5</input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="precio">Precio: </label>
+            </td>
+            <td>
+                <input type="number" required> €</input>
+            </td>
+        </tr>
+    </table>
+
+
+
+
+
+    </form>
 </body>
 </html>

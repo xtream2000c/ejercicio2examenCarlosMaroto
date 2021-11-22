@@ -5,7 +5,27 @@ $baseDatos= "lindavista";
 $usuario = "root";
 $contrasena = "root";
 
-//$conexion = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'] , $GLOBALS['usuario'], $GLOBALS['contrasena']);
+function insertaVivienda($nombre, $dni, $edad, $sexo, $raza, $fechaAlta, $foto)
+{
+    try {
+        $conexion = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['contrasena']); // Iniciamos la conexion a la base de datos.
+        $sql = $conexion->prepare("INSERT into viviendas values(null,:nombre,:dni,:edad,:sexo,:raza,:fechaAlta,:foto)");  // Preparamos la pregunta sql que se va a realizar.
+        $sql->bindParam(":nombre", $nombre);
+        $sql->bindParam(":dni", $dni);
+        $sql->bindParam(":edad", $edad);
+        $sql->bindParam(":sexo", $sexo);
+        $sql->bindParam(":raza", $raza);
+        $sql->bindParam(":fechaAlta", $fechaAlta);
+        $sql->bindParam(":foto", $foto);
+        $sql->execute();
+        $id = $conexion->lastInsertId();
+        $conexion = null;
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    
+    return $id;
+}
 
 function obtenerViviendas()
 {
