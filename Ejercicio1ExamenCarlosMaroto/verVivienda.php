@@ -40,7 +40,7 @@
         <li>Foto: <a href="images/<?php echo $vivienda["foto"]; ?>"><?php echo $vivienda["foto"]; ?></a> </li>
         <li>Observaciones: <?php echo $vivienda["observaciones"]; ?></li>
     </ul>
-
+<a href="index.php">Volver al inicio</a>
 
 
 </body>
