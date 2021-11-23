@@ -9,6 +9,37 @@
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
+
+    <?php
+
+        include_once "conexionDB.php";
+
+        if(count($_POST) > 0){
+            $foto = $_FILES["foto"]["name"];
+            $temp = $_FILES['foto']['tmp_name'];
+            if (move_uploaded_file($temp, 'images/' . $foto)) {
+                //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
+                chmod('images/' . $foto, 0777);
+            }
+            
+            $extras = implode(",",$_POST['extra']);
+
+            if(!$extras){
+                $extras = "ninguno";
+            }
+            
+            $id = insertaVivienda( $_POST["tipo"], $_POST["zona"], $_POST["direccion"], $_POST["ndormitorios"], $_POST["precio"], $_POST["tamano"], $extras , $foto, $_POST["observaciones"]);
+            if ($id != 0) {
+                header("Location: verVivienda.php?varId=$id");
+                exit();
+            } else {
+                $error = "Datos incorrectos";
+            }
+            
+        }
+
+    ?>
+
     <header>
         <h1> Inmobiliaria NOVENDONUNCANA S.A. </h1>
     </header>
@@ -25,13 +56,13 @@
     <p>Introduzca los datos de la vivienda</p>
 
     <table>
-    <form action="self" method="post">
+    <form class="form-register" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data">
         <tr>
             <td>
                 <label for="tipo">Tipo de vivienda: </label>
             </td>
             <td>
-                <select id="tipo" required>
+                <select name="tipo" required>
                     <option value="piso"> Piso </option>
                     <option value="adosado"> Adosado </option>
                     <option value="chalet"> Chalet </option>
@@ -44,7 +75,7 @@
                 <label for="zona">Zona: </label>
             </td>
             <td>
-                <select id="zona" required>
+                <select name="zona" required>
                     <option value="centro"> Centro </option>
                     <option value="nervion"> Nervion </option>
                     <option value="triana"> Triana </option>
@@ -66,11 +97,11 @@
                 <label for="dormitorios">Numero de dormitorios: </label>
             </td>
             <td>
-                <input type="radio" name="dormitorios">1</input>
-                <input type="radio" name="dormitorios">2</input>
-                <input type="radio" name="dormitorios" checked>3</input>
-                <input type="radio" name="dormitorios">4</input>
-                <input type="radio" name="dormitorios">5</input>
+                <input type="radio" name="ndormitorios" value="1">1</input>
+                <input type="radio" name="ndormitorios" value="2">2</input>
+                <input type="radio" name="ndormitorios" value="3" checked>3</input>
+                <input type="radio" name="ndormitorios" value="4">4</input>
+                <input type="radio" name="ndormitorios" value="5">5</input>
             </td>
         </tr>
         <tr>
@@ -120,7 +151,6 @@
                 <input type="submit">
             </td>
         </tr>
-
     </table>
 
 
