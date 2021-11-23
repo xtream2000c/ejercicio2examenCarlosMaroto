@@ -5,18 +5,20 @@ $baseDatos= "lindavista";
 $usuario = "root";
 $contrasena = "root";
 
-function insertaVivienda($nombre, $dni, $edad, $sexo, $raza, $fechaAlta, $foto)
+function insertaVivienda($tipo, $zona, $direccion, $ndormitorios, $precio, $tamano, $extra, $foto, $observaciones)
 {
     try {
         $conexion = new PDO("mysql:host=" . $GLOBALS['servidor'] . ";dbname=" . $GLOBALS['baseDatos'], $GLOBALS['usuario'], $GLOBALS['contrasena']); // Iniciamos la conexion a la base de datos.
-        $sql = $conexion->prepare("INSERT into viviendas values(null,:nombre,:dni,:edad,:sexo,:raza,:fechaAlta,:foto)");  // Preparamos la pregunta sql que se va a realizar.
-        $sql->bindParam(":nombre", $nombre);
-        $sql->bindParam(":dni", $dni);
-        $sql->bindParam(":edad", $edad);
-        $sql->bindParam(":sexo", $sexo);
-        $sql->bindParam(":raza", $raza);
-        $sql->bindParam(":fechaAlta", $fechaAlta);
+        $sql = $conexion->prepare("INSERT into viviendas values(null,:tipo,:zona,:direccion,:ndormitorios,:precio,:tamano,:extra,:foto,:observaciones)");  // Preparamos la pregunta sql que se va a realizar.
+        $sql->bindParam(":tipo", $tipo);
+        $sql->bindParam(":zona", $zona);
+        $sql->bindParam(":direccion", $direccion);
+        $sql->bindParam(":ndormitorios", $ndormitorios);
+        $sql->bindParam(":precio", $precio);
+        $sql->bindParam(":tamano", $tamano);
+        $sql->bindParam(":extra", $extra);
         $sql->bindParam(":foto", $foto);
+        $sql->bindParam(":observaciones", $observaciones);
         $sql->execute();
         $id = $conexion->lastInsertId();
         $conexion = null;

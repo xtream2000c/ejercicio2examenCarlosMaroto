@@ -58,7 +58,7 @@
                 <label for="direccion">Direcion: </label>
             </td>
             <td>
-                <input type="text" required>
+                <input type="text" name="direccion" required>
             </td>
         </tr>
         <tr>
@@ -78,9 +78,49 @@
                 <label for="precio">Precio: </label>
             </td>
             <td>
-                <input type="number" required> €</input>
+                <input type="number" name="precio" required> €</input>
             </td>
         </tr>
+        <tr>
+            <td>
+                <label for="tamano">Tamaño: </label>
+            </td>
+            <td>
+                <input type="number" name="tamano" required> metros cuadrados</input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="extra">Extras (Marque los que procedan): </label>
+            </td>
+            <td>
+                <input type="checkbox" name="extra[]" value="piscina"> Piscina</input>
+                <input type="checkbox" name="extra[]" value="jardin"> Jardin</input>
+                <input type="checkbox" name="extra[]" value="garage"> Garage</input>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="foto">Foto: </label>
+            </td>
+            <td>
+            <input type="file" name="foto" accept="image/png, image/jpeg" class="input-100">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="observaciones">Observaciones: </label>
+            </td>
+            <td>
+            <textarea name="observaciones" cols="30" rows="10"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit">
+            </td>
+        </tr>
+
     </table>
 
 
