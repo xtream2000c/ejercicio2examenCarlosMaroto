@@ -22,10 +22,10 @@
                 chmod('images/' . $foto, 0777);
             }
             
+            if(isset($_POST['extra'])){
             $extras = implode(",",$_POST['extra']); //Se crea un string con todos los extra seleccionados
-
-            if(!$extras){
-                $extras = "ninguno"; // Si la cadena $extras esta vacia entonces se le asigna el valor ninguno
+            }else{
+            $extras = "ninguno"; // Si la cadena $extras esta vacia entonces se le asigna el valor ninguno
             }
             
             //Se crea la variable id que recibira el return id de la funcion insertaVivienda en conexionDB.
