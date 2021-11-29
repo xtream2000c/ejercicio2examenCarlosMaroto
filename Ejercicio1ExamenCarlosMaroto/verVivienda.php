@@ -12,10 +12,10 @@
 
     <?php 
         
-        include_once "conexionDB.php";
+        include_once "conexionDB.php"; //Se incluye el archivo de conexion a base de datos
 
-        $id = $_GET['varId'];
-        $vivienda = obtenerVivienda($id);
+        $id = $_GET['varId']; //Se recibe el id de la vivienda introducida, esto se envia con el header de introduceCasa.php
+        $vivienda = obtenerVivienda($id); //Se recibe toda la informacion de la vivienda con el id recibido
     ?>
 
     <header>
@@ -29,7 +29,7 @@
         </ul>
     </nav>
 
-    <ul>
+    <ul> <!-- Se imprime la informacion recibida de la vivienda -->
         <li>Tipo: <?php echo $vivienda["tipo"]; ?></li>
         <li>Zona: <?php echo $vivienda["zona"]; ?></li>
         <li>Direccion: <?php echo $vivienda["direccion"]; ?></li>

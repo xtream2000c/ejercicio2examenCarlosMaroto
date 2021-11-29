@@ -1,9 +1,13 @@
 <?php
 
+//Datos de acceso a la base de datos
+
 $servidor = "localhost";
 $baseDatos= "lindavista";
 $usuario = "root";
 $contrasena = "root";
+
+//Funcion empleada para insertar viviendas
 
 function insertaVivienda($tipo, $zona, $direccion, $ndormitorios, $precio, $tamano, $extras, $foto, $observaciones)
 {
@@ -19,16 +23,17 @@ function insertaVivienda($tipo, $zona, $direccion, $ndormitorios, $precio, $tama
         $sql->bindParam(":extras", $extras);
         $sql->bindParam(":foto", $foto);
         $sql->bindParam(":observaciones", $observaciones);
-        $sql->execute();
-        $id = $conexion->lastInsertId();
-        $conexion = null;
+        $sql->execute(); //Se ejecuta la sentencia sql
+        $id = $conexion->lastInsertId(); //Se devuelve el id de la vivienda introducida
+        $conexion = null; //Se cierra la conexion 
     } catch (PDOException $e) {
-        echo $e;
+        echo $e; //Si hay un error se imprime el error
     }
     
-    return $id;
+    return $id; //Se devuelve el id
 }
 
+//Funcion que se emplea para obtener todas las viviendas de la base de datos
 function obtenerViviendas()
 {
     try {
@@ -48,6 +53,8 @@ function obtenerViviendas()
     return $viviendas; // Devuelve el array de viviendas
 }
 
+//Funcion que permite filtrar las viviendas por tipo
+
 function obtenerViviendasTipo($tipo)
 {
     try {
@@ -66,6 +73,8 @@ function obtenerViviendasTipo($tipo)
     
     return $viviendas; // Devuelve el array de viviendas
 }
+
+// Funcion que muestra la informacion de una sola vivienda, esta funcion se emplea justo despues de introducir una vivienda para mostrar la informacion de dicha vivienda.
 
 function obtenerVivienda($id)
 {

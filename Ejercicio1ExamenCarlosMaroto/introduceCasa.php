@@ -12,28 +12,29 @@
 
     <?php
 
-        include_once "conexionDB.php";
+        include_once "conexionDB.php"; //Se incluye el archivo de conexion a base de datos
 
-        if(count($_POST) > 0){
-            $foto = $_FILES["foto"]["name"];
-            $temp = $_FILES['foto']['tmp_name'];
-            if (move_uploaded_file($temp, 'images/' . $foto)) {
-                //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
+        if(count($_POST) > 0){ //Si se ha realizado el envio de formulario.
+            $foto = $_FILES["foto"]["name"]; //Se crea el archivo foto, al que se le da un nombre
+            $temp = $_FILES['foto']['tmp_name']; //Se crea el archivo temporal donde se guarda la foto
+            if (move_uploaded_file($temp, 'images/' . $foto)) { //Se mueve el archivo temporal, a la ruta, con el nombre que se le va a asignar
+                // Se Cambian los permisos del archivo a 777 para poder modificarlo posteriormente
                 chmod('images/' . $foto, 0777);
             }
             
-            $extras = implode(",",$_POST['extra']);
+            $extras = implode(",",$_POST['extra']); //Se crea un string con todos los extra seleccionados
 
             if(!$extras){
-                $extras = "ninguno";
+                $extras = "ninguno"; // Si la cadena $extras esta vacia entonces se le asigna el valor ninguno
             }
             
+            //Se crea la variable id que recibira el return id de la funcion insertaVivienda en conexionDB.
             $id = insertaVivienda( $_POST["tipo"], $_POST["zona"], $_POST["direccion"], $_POST["ndormitorios"], $_POST["precio"], $_POST["tamano"], $extras , $foto, $_POST["observaciones"]);
-            if ($id != 0) {
+            if ($id != 0) { //Si el id es distinto de 0 la vivienda se ha insertado, y se redirige a una pagina para ver dicha vivienda.
                 header("Location: verVivienda.php?varId=$id");
                 exit();
             } else {
-                $error = "Datos incorrectos";
+                $error = "Datos incorrectos";//Si el id es 0 entonces ha fallado la sentencia sql para insertar la vivienda
             }
             
         }

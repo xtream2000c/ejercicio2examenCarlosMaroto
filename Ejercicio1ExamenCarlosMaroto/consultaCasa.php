@@ -12,13 +12,13 @@
 
     <?php 
         
-        include_once "conexionDB.php";
+        include_once "conexionDB.php"; //Se incluye el archivo de conexion a base de datos
 
-            $tipo= array_key_exists("tipo",$_POST) ? $_POST["tipo"] : "todos";
+            $tipo= array_key_exists("tipo",$_POST) ? $_POST["tipo"] : "todos"; //Se asigna el valor a $tipo, si se recibe por post se introduce ese valor, si no se recibe nada, entonces se le asigna el valor todos
     
-        if ($tipo == "todos") {
+        if ($tipo == "todos") { //Si tipo es todos, se llama a la funcion para obtener todas las viviendas
             $viviendas = obtenerViviendas();
-        }else{
+        }else{ //Si tipo no vale todos y tiene un valor concreto, se filtra la busqueda por el tipo.
             $viviendas = obtenerViviendasTipo($tipo);
         }
         
@@ -61,7 +61,7 @@
         </tr>
         <?php
 
-        foreach ($viviendas as $vivienda) {
+        foreach ($viviendas as $vivienda) { //Foreach con que se imprimen todas las filas de la tabla, una por cada vivienda.
             
             echo "<tr>";
             echo "<td>".$vivienda["tipo"]."</td>";
