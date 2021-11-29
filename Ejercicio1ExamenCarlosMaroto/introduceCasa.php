@@ -110,7 +110,7 @@
                 <label for="precio">Precio: </label>
             </td>
             <td>
-                <input type="number" name="precio" required> €</input>
+                <input type="number" name="precio" min="1" required> €</input>
             </td>
         </tr>
         <tr>
@@ -118,7 +118,7 @@
                 <label for="tamano">Tamaño: </label>
             </td>
             <td>
-                <input type="number" name="tamano" required> metros cuadrados</input>
+                <input type="number" name="tamano" min="1" required> metros cuadrados</input>
             </td>
         </tr>
         <tr>
